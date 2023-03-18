@@ -10,5 +10,8 @@ Given url retailURL
 * print response.fullName
 * status 200
 
-  
+##  another way that you can do here to read a file.
+##  So now let's suppose instead of reading this value from here what you can do you can read this from 
+##  the like from the JSON.And then just add that one here 
+##  you can define like a JSON and then just read it from from from here
   

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Karate Timeline</title>
+    <style>
+      body, html { font-family: arial, sans-serif; font-size: 11pt; }
+      #visualization { box-sizing: border-box; width: 100%; height: 300px; }
+      .vis-item.failed { background-color: #F2928C; }
+      .page-heading { padding: 0.5em; margin-bottom: 0.5em; background-color: lightcyan; border: 1px solid gray; }
+    </style>
+    <script src="res/vis.min.js"></script>
+    <link href="res/vis.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="page-heading">
+      <a href="karate-summary.html">Summary</a>
+    </div>     
+    <div id="visualization"></div>
+    <script>
+var groups = [{"content":"main","id":1}];
+var items = [{"id":1,"group":1,"content":"src\/test\/java\/features\/postAddress[1:10]","start":1679115628999,"end":1679115630375,"title":"src\/test\/java\/features\/postAddress[1:10] 01:00:28.999-01:00:30.375 post address for primary person"},{"id":2,"group":1,"content":"src\/test\/java\/features\/postAddress[2:30]","start":1679115630382,"end":1679115630901,"title":"src\/test\/java\/features\/postAddress[2:30] 01:00:30.382-01:00:30.901 get address of primary person"},{"id":3,"group":1,"content":"src\/test\/java\/features\/postAddress[3:43]","start":1679115630911,"end":1679115631399,"title":"src\/test\/java\/features\/postAddress[3:43] 01:00:30.911-01:00:31.399 update adress of primary person"},{"id":4,"group":1,"content":"src\/test\/java\/features\/postAddress[4:54]","start":1679115631404,"end":1679115631833,"title":"src\/test\/java\/features\/postAddress[4:54] 01:00:31.404-01:00:31.833 delete address"},{"id":5,"group":1,"content":"src\/test\/java\/features\/postAddress[5:63]","start":1679115631837,"end":1679115632273,"title":"src\/test\/java\/features\/postAddress[5:63] 01:00:31.837-01:00:32.273 post payment method"},{"id":6,"group":1,"content":"src\/test\/java\/features\/postAddress[6:80]","start":1679115632278,"end":1679115632736,"title":"src\/test\/java\/features\/postAddress[6:80] 01:00:32.278-01:00:32.736 get payment method"},{"id":7,"group":1,"content":"src\/test\/java\/features\/postAddress[7:88]","start":1679115632739,"end":1679115633161,"title":"src\/test\/java\/features\/postAddress[7:88] 01:00:32.739-01:00:33.161 update pyment method"}];
+</script>
+    <script>
+      var container = document.getElementById('visualization');
+      var timeline = new vis.Timeline(container);
+      timeline.setOptions({groupOrder: 'content'});
+      timeline.setGroups(new vis.DataSet(groups));
+      timeline.setItems(new vis.DataSet(items));
+    </script>
+  </body>
+</html>

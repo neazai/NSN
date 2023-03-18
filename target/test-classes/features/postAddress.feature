@@ -33,6 +33,7 @@ Feature: Tek Retail Service
     * status 200
     * print response[1].id
     #* print response.id = 5044
+    # this below method will save the response to addresmjson file in karate report
     * karate.write(response,'address.json')
 
   # we need to capture the value and store that ID so we can reuse it. so we have to store it.Ride this one into a Jason file and after that you can read it.
@@ -43,19 +44,9 @@ Feature: Tek Retail Service
     * def addressID = read('file:./target/address.json')
     * def id = addressID[1].id
     * path "/address/" + id
-    * request
-      """
-      {
-        "country": "United States",
-        "fullName": "chamon",
-        "phoneNumber": "7676767667",
-        "street": "400 bestar",
-        "apartment": "Home",
-        "city": "Dewanakhana",
-        "state": "VA",
-        "zipCode": "42005"
-      }
-      """
+    * def requestBody = read('request.json')
+    * request requestBody
+    ## instead of adding request parameter  we will address it to json file so it can get it from there
     * method put
     * print response
 
@@ -66,3 +57,59 @@ Feature: Tek Retail Service
     * path "/address/" + id
     * method delete
     * print response
+    
+    
+    @addPayment
+    Scenario: post payment method
+    * path "/payment"
+    * request
+    """
+    {
+  "cardNumber": "0189098089898909",
+  "nameOnCard": "shiringul",
+  "expirationMonth": 11,
+  "expirationYear": 2027,
+  "securityCode": "899"
+}
+    """
+    * method post
+    * print response
+    
+    
+    @getPayment
+    Scenario: get payment method
+    * path "/payment"
+    * method get
+    * print response
+    * karate.write(response,'payment.json')
+    
+    
+    @putPyment
+    Scenario: update pyment method
+    * def paymentID = read('file:./target/payment.json')
+    * def id = paymentID[0].id
+    * path "/payment/" + id
+    * request
+    """
+   {
+  "cardNumber": "0189098089898909",
+  "nameOnCard": "shiringul",
+  "expirationMonth": 11,
+  "expirationYear": 2027,
+  "securityCode": "899"
+}
+    """
+    * method put
+    * print response
+    
+    
+    @deletePyment
+    Scenario: delete payment
+    * def paymentID = read('file:./target/payment.json')
+    * def id = paymentID[1].id
+    * path "/payment/" + id
+    * method delete 
+    * print response
+    
+    
+    
