@@ -8,7 +8,7 @@ public class Runner {
 	
 	@Karate.Test
 	public Karate runTest() {
-		return Karate.run("classpath:features").tags("@deletAddress");// .outputCucumberJson(true)
+		return Karate.run("classpath:features").tags("@deletAddress").outputCucumberJson(true);
 	}
 	
 	
